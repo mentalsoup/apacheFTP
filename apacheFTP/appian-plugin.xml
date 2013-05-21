@@ -1,0 +1,17 @@
+<appian-plugin name="FTP Tools" key="apacheFTP">
+
+  <plugin-info>
+    <description>FTP Tools</description>
+    <vendor name="Appian Corporation" url="http://www.appian.com" />
+    <version>1.0.0</version>
+    <application-version min="6.1.0" />
+  </plugin-info>
+
+
+  <smart-service name="FTPUpload" key="FTPUpload"
+    class="archant.appian.com.FTPupload" />
+    
+  <smart-service name="FTPDownload" key="FTPDownload"
+    class="archant.appian.com.FTPdownload" />  
+    
+</appian-plugin>
