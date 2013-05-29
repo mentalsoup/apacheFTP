@@ -17,7 +17,7 @@
 	<classpathentry kind="lib" path="lib-compile/jaxb-impl-2.1.13.jar"/>
 	<classpathentry kind="lib" path="lib-compile/jaxb-xjc-2.1.13.jar"/>
 	<classpathentry kind="lib" path="lib-compile/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="lib/commons-net-3.2-sources.jar"/>
 	<classpathentry kind="lib" path="lib/commons-net-3.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-net-3.2-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

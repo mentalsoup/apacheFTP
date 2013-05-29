@@ -97,6 +97,10 @@ public class FTPupload extends AppianSmartService {
 			ftpClient.enterLocalPassiveMode();
 
 			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+			
+			// FTP upload speed resolved using http://stackoverflow.com/questions/14000341/why-is-ftp-upload-slow-in-java-7
+			// without setting a 2.1Mb file tool 8mins20sec. With the setting in place for the same file, 5secs.
+			ftpClient.setBufferSize(0);
 
 			// APPROACH #1: uploads first file using an InputStream
 			File firstLocalFile = new File(fileLocation);
