@@ -41,6 +41,7 @@ public class FTPdownload extends AppianSmartService {
 	private String localFilePath;
 	private ContentService contentService;
 	private boolean success;
+	private boolean deleteTheFile;
 
 	// public static void main(String[] args) {
 	// String server = host;
@@ -51,14 +52,14 @@ public class FTPdownload extends AppianSmartService {
 	@Override
 	public void run() throws SmartServiceException {
 		try {
-			sendFile(username, password, host, port, remoteFilePath, localFilePath, fileName);
+			sendFile(username, password, host, port, remoteFilePath, localFilePath, fileName, deleteTheFile);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	private void sendFile(String username, String password, String host, int port, String filePath1, String filePath2, String fileName)
+	private void sendFile(String username, String password, String host, int port, String filePath1, String filePath2, String fileName, Boolean deleteTheFile)
 			throws Exception {
 			String fileDestination = (new StringBuilder(filePath2+"/"+fileName)).toString();
 			//"C:/TAG/976231JJ.zip"
@@ -89,10 +90,26 @@ public class FTPdownload extends AppianSmartService {
 	            }
 	            outputStream2.close();
 	            inputStream.close();
+	            
+	            boolean enabledelete = deleteTheFile;
+	            
+	            if (enabledelete) {
+	               
+	            String fileToDelete = fileLocation;
 	 
-	        } catch (IOException ex) {
-	            System.out.println("Error: " + ex.getMessage());
-	            ex.printStackTrace();
+	            boolean deleted = ftpClient.deleteFile(fileToDelete);
+	            if (deleted) {
+	                System.out.println("The file was deleted successfully.");
+	            } else {
+	                System.out.println("Could not delete the  file, it may not exist.");
+	            }
+	            } else {
+	                System.out.println("File deletion disabled.");
+	            }
+	        }	 
+		        catch (IOException ex) {
+		            System.out.println("Error: " + ex.getMessage());
+		            ex.printStackTrace();
 	        } finally {
 	            try {
 	                if (ftpClient.isConnected()) {
@@ -158,6 +175,12 @@ public class FTPdownload extends AppianSmartService {
 	@Name("localFilePath")
 	public void setLocalFilePath(String val) {
 		this.localFilePath = val;
+	}
+	
+	@Input(required = Required.OPTIONAL)
+	@Name("deleteTheFile")
+	public void setDeleteTheFile(Boolean val) {
+		this.deleteTheFile = val;
 	}
 
 }

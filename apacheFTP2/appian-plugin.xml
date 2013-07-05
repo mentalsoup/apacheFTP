@@ -1,9 +1,9 @@
-<appian-plugin name="FTP Tools" key="apacheFTP">
+<appian-plugin name="FTP Tools" key="apacheFTP2">
 
   <plugin-info>
     <description>FTP Tools</description>
     <vendor name="Appian Corporation" url="http://www.appian.com" />
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <application-version min="6.1.0" />
   </plugin-info>
 
